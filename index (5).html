@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SOCIAL SECURITY KINGDOM — The Fall of the Crown</title>
+<meta name="description" content="Sosial təhlükəsizlik mövzusunda 3D siyasi strategiya oyunu.">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="bg" class="m-title" aria-hidden="true"></div>
+<div id="app">
+
+  <!-- BAŞLANĞIC EKRAN -->
+  <section id="s-title" class="screen active">
+    <div class="hero">
+      <p class="sub">Siyasi və sosial strategiya oyunu</p>
+      <h1>SOCIAL SECURITY<br>KINGDOM</h1>
+      <p class="tag">The Fall of the Crown</p>
+      <nav class="menu">
+        <button class="btn primary" id="btn-new">Yeni krallıq yarat</button>
+        <button class="btn" id="btn-continue">Oyuna davam et</button>
+        <button class="btn" id="btn-rules">Oyun qaydaları</button>
+        <button class="btn" id="btn-history">Tarixi nəticələr</button>
+      </nav>
+    </div>
+  </section>
+
+  <!-- QAYDALAR -->
+  <section id="s-rules" class="screen">
+    <div class="panel wide">
+      <h2>Oyun qaydaları</h2>
+      <p>Siz öz krallığınızı idarə edən kralsınız. Hər növbədə ölkədə yeni sosial, iqtisadi və ya siyasi hadisə baş verir. Məsləhətçilərə qulaq asın və qərar verin.</p>
+      <ul class="rules">
+        <li>14 göstərici 0–100 aralığındadır. Heç bir qərar bütün göstəricilər üçün ideal deyil.</li>
+        <li>Bəzi nəticələr dərhal, bəziləri 2–4 növbə sonra üzə çıxır. Əvvəlki qərarlar sonrakı hadisələrə təsir edir.</li>
+        <li>Taxt tək göstəricinin sıfıra düşməsi ilə itirilmir. Gərginlik, legitimlik, elitanın dəstəyi və büdcə birlikdə qiymətləndirilir.</li>
+        <li>Dörd məsləhətçinin hər biri fərqli mövqedən baxır. Etibarlılıqları əvvəlki qərarların nəticəsinə görə dəyişir.</li>
+        <li>Asan rejimdə risklər aydın göstərilir. Orta rejimdə bəzi riskləri özünüz tapmalısınız. Çətin rejimdə məlumat natamamdır və məsləhətçilər qərəzli ola bilər.</li>
+        <li>20 növbə dövlət başçısı kimi qalsanız, yekun hesabat çoxölçülü qiymətləndirmə ilə hazırlanır. Yalnız hakimiyyətdə qalma müddəti kifayət deyil.</li>
+        <li>Oyun hər qərardan sonra avtomatik yadda saxlanılır.</li>
+      </ul>
+      <div class="row"><button class="btn" data-go="s-title">Geri</button></div>
+    </div>
+  </section>
+
+  <!-- TARİXİ NƏTİCƏLƏR -->
+  <section id="s-history" class="screen">
+    <div class="panel wide">
+      <h2>Tarixi nəticələr</h2>
+      <div id="hist-list" class="hist-list"></div>
+      <div class="row"><button class="btn" data-go="s-title">Geri</button><button class="btn danger" id="btn-clear">Nəticələri sil</button></div>
+    </div>
+  </section>
+
+  <!-- ÖLKƏ SEÇİMİ -->
+  <section id="s-country" class="screen">
+    <div class="panel wide">
+      <h2>Krallığını seç</h2>
+      <div class="diff" id="diff">
+        <span>Çətinlik:</span>
+        <label><input type="radio" name="diff" value="1"> Asan</label>
+        <label><input type="radio" name="diff" value="2" checked> Orta</label>
+        <label><input type="radio" name="diff" value="3"> Çətin</label>
+      </div>
+      <div class="country-wrap">
+        <div id="country-list" class="country-list"></div>
+        <div id="country-detail" class="country-detail"><p class="muted">Ətraflı məlumat üçün krallıq seçin.</p></div>
+      </div>
+      <div class="row"><button class="btn" data-go="s-title">Geri</button><button class="btn primary" id="btn-start" disabled>Taxta otur</button></div>
+    </div>
+  </section>
+
+  <!-- OYUN -->
+  <section id="s-game" class="screen">
+    <header id="top">
+      <div class="top-l"><b id="top-country"></b><span id="top-turn"></span><span id="top-diff"></span></div>
+      <div class="top-budget" title="Dövlət büdcəsi (nisbi indeks)"><span>Büdcə</span><div class="bbar"><i id="budget-fill"></i></div><b id="budget-val"></b></div>
+      <div class="top-r"><button class="btn small" id="btn-hud">Göstəricilər</button><button class="btn small" id="btn-menu">Menyu</button></div>
+    </header>
+    <div id="hud" class="hud"></div>
+    <main id="card" class="card">
+      <div id="notes" class="notes"></div>
+      <h2 id="evt-title"></h2>
+      <p id="evt-desc" class="lead"></p>
+      <dl class="meta">
+        <dt>Səbəb</dt><dd id="evt-cause"></dd>
+        <dt>Təsirlənənlər</dt><dd id="evt-groups"></dd>
+        <dt>Ölkənin vəziyyəti</dt><dd id="evt-state"></dd>
+        <dt>Problem</dt><dd id="evt-prob"></dd>
+      </dl>
+      <div id="advisors" class="advisors"></div>
+      <div id="options" class="options"></div>
+    </main>
+  </section>
+
+  <!-- YEKUN EKRAN -->
+  <section id="s-result" class="screen">
+    <div class="panel wide" id="result-box"></div>
+  </section>
+</div>
+
+<button id="skip" class="btn small hidden">Keç</button>
+
+<div id="modal" class="modal hidden" role="dialog" aria-modal="true">
+  <div class="modal-box">
+    <div id="modal-body"></div>
+    <div id="modal-actions" class="row"></div>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="scenarios.js"></script>
+<script src="gameEngine.js"></script>
+<script src="3dScene.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
